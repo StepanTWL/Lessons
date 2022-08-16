@@ -46,7 +46,7 @@ if countrie:
     print(f'INFO: {city} is a city in {countrie}')
 else:
     print(f'ERROR: Country for {city} not found')
-"""
+
 
 user = {
     "id": 4170,
@@ -74,3 +74,58 @@ user.clear()
 for i in user_new:
     user[i]=user_new[i]
 print()
+
+
+
+workers = {
+    'employer1': {'name': 'Jhon', 'salary': 7500},
+    'employer2': {'name': 'Emma', 'salary': 8000},
+    'employer3': {'name': 'Brad', 'salary': 500}
+}
+
+keys=workers.keys()
+for i in keys:
+    if workers[i]['name']=='Brad':
+        workers[i]['salary'] = 8500
+print(workers)
+
+
+n=input()
+dict={}
+for i in n:
+    if i.isalpha():
+        dict[i] = dict.get(i, 0) + 1
+print(dict)
+
+
+supermarket = {
+    "milk": {"quantity": 20, "price": 1.19},
+    "biscuits": {"quantity": 32, "price": 1.45},
+    "butter": {"quantity": 20, "price": 2.29},
+    "cheese": {"quantity": 15, "price": 1.90},
+    "bread": {"quantity": 15, "price": 2.59},
+    "cookies": {"quantity": 20, "price": 4.99},
+    "yogurt": {"quantity": 18, "price": 3.65},
+    "apples": {"quantity": 35, "price": 3.15},
+    "oranges": {"quantity": 40, "price": 0.99},
+    "bananas": {"quantity": 23, "price": 1.29}
+}
+sum=0
+keys=supermarket.keys()
+for i in keys:
+    sum += supermarket[i]['quantity']*supermarket[i]['price']
+print(sum)
+"""
+
+n=input()
+n_=input()
+dict={}
+dict_={}
+if len(n)==len(n_):
+    for i in n:
+        dict[i]=dict.get(i, 0) + 1
+    for i in n_:
+        dict_[i]=dict_.get(i, 0) + 1
+    keys=dict.keys()
+    keys_=dict_.keys()
+    for 
