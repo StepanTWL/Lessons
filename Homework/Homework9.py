@@ -256,9 +256,8 @@ print(s)
 """
 
 sett=set()
-dictt=dict('Билл': 0, 'Вилл': 0, 'Дилл': 0)
+dictt=dict(Били=0, Вили=0, Дили=0)
 arr=[]
-arr.append
 while True:
     s = input()
     if s == 'конец':
@@ -266,8 +265,8 @@ while True:
     sett.add(s)
 for i in sett:
     dictt[i[:i.index(':')]] = dictt.get(i[:i.index(':')], 0) + 1
-for i in dictt.keys():
+for i in dictt.values():
     arr.append(i)
-sorted(arr, reverse=True)
-for i in arr:
-    print('Количество уникальных комментаторов у '+i+' - '+str(dictt[i]))
+print(arr)
+for i in dictt:
+    print('Количество уникальных комментаторов у '+i.keys()+' - '+str(dictt[i]))
