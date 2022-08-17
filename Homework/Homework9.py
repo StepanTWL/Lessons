@@ -204,7 +204,7 @@ user = {
 arr=input().lower().split()
 dictt={i: user[i] for i in arr}
 print(dictt)
-"""
+
 
 people = [
     ['Amy Smith', '694.322.8133x22426'],
@@ -225,3 +225,49 @@ people = [
 ]
 phone_book={i[1]: i[0] for i in people}
 print(phone_book)
+
+
+vector = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]]
+vector1 = [vector[i][j] for i in range(len(vector)) for j in range(len(vector[i]))]
+print(vector1)
+
+
+s=input()
+sett=set([i for i in s if '0'<=i<='9'])
+countt=0
+suc=0
+arr=[]
+for i in sett:
+    if s.count(i) > 1:
+        suc=1
+        arr.append(i)
+if suc:
+    print(*(sorted(arr)))
+else:
+    print('NO')
+
+
+s=input()
+sett=set(s)
+for i in sett:
+    while s.count(i) > 1:
+        s = s[:s.rindex(i)]+s[s.rindex(i)+1:]
+print(s)
+"""
+
+sett=set()
+dictt=dict('Билл': 0, 'Вилл': 0, 'Дилл': 0)
+arr=[]
+arr.append
+while True:
+    s = input()
+    if s == 'конец':
+        break
+    sett.add(s)
+for i in sett:
+    dictt[i[:i.index(':')]] = dictt.get(i[:i.index(':')], 0) + 1
+for i in dictt.keys():
+    arr.append(i)
+sorted(arr, reverse=True)
+for i in arr:
+    print('Количество уникальных комментаторов у '+i+' - '+str(dictt[i]))
