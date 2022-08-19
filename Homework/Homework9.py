@@ -253,11 +253,10 @@ for i in sett:
     while s.count(i) > 1:
         s = s[:s.rindex(i)]+s[s.rindex(i)+1:]
 print(s)
-"""
+
 
 sett=set()
 dictt=dict(Били=0, Вили=0, Дили=0)
-arr=[]
 while True:
     s = input()
     if s == 'конец':
@@ -265,8 +264,71 @@ while True:
     sett.add(s)
 for i in sett:
     dictt[i[:i.index(':')]] = dictt.get(i[:i.index(':')], 0) + 1
-for i in dictt.values():
-    arr.append(i)
-print(arr)
-for i in dictt:
-    print('Количество уникальных комментаторов у '+i.keys()+' - '+str(dictt[i]))
+if dictt['Били']>=dictt['Вили'] and dictt['Били']>=dictt['Дили']:
+    print('Количество уникальных комментаторов у Били - '+str(dictt['Били']))
+    if dictt['Вили']>=dictt['Дили']:
+        print('Количество уникальных комментаторов у Вили - '+str(dictt['Вили']))
+        print('Количество уникальных комментаторов у Дили - '+str(dictt['Дили']))
+    else:
+        print('Количество уникальных комментаторов у Дили - '+str(dictt['Дили']))
+        print('Количество уникальных комментаторов у Вили - '+str(dictt['Вили']))
+elif dictt['Вили']>=dictt['Дили']:
+    print('Количество уникальных комментаторов у Вили - '+str(dictt['Вили']))
+    if dictt['Били']>=dictt['Дили']:
+        print('Количество уникальных комментаторов у Били - '+str(dictt['Били']))
+        print('Количество уникальных комментаторов у Дили - '+str(dictt['Дили']))
+    else:
+        print('Количество уникальных комментаторов у Дили - '+str(dictt['Дили']))
+        print('Количество уникальных комментаторов у Били - '+str(dictt['Били']))
+else:
+    print('Количество уникальных комментаторов у Дили - '+str(dictt['Дили']))
+    if dictt['Били']>=dictt['Вили']:
+        print('Количество уникальных комментаторов у Били - '+str(dictt['Били']))
+        print('Количество уникальных комментаторов у Вили - '+str(dictt['Вили']))
+    else:
+        print('Количество уникальных комментаторов у Вили - '+str(dictt['Вили']))
+        print('Количество уникальных комментаторов у Били - '+str(dictt['Били']))
+
+
+# put your python code here
+s=input()
+sett=set(s)
+if len(sett)%2:
+    print('IGNORE HIM!')
+else:
+    print('CHAT WITH HER!')
+
+
+# put your python code here
+sett=set(input().split())
+print(4-len(sett))
+
+
+year=int(input())
+sett=set()
+while True:
+    year+=1
+    sett=set(str(year))
+    if len(sett) == 4:
+        break
+print(year)
+
+
+s=input()
+if len(s)<3:
+    print(0)
+elif len(s)==3:
+    print(1)
+else:
+    sett=set(s[1:-1].split(', '))
+    print(len(sett))
+
+# put your python code here
+n=int(input())
+s=input().lower()
+sett=set(s)
+if len(sett)==26:
+    print('YES')
+else:
+    print('NO')
+"""
