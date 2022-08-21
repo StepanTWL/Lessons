@@ -222,7 +222,7 @@ def info_kwargs(**kargs):
         print(i+' = '+str(dictt[i]))
 
 info_kwargs(first_name="John", last_name="Doe", age=33) 
-"""
+
 
 def rec(arr: list) -> list:
     if len(arr)>0:
@@ -232,3 +232,32 @@ def rec(arr: list) -> list:
 input()
 arr1=list(map(int, input().split()))
 rec(arr1)
+
+
+def fibo(num: int, ex0: int = 0, ex1: int = 1) -> int:
+    if num==0:
+        return ex0
+    elif num==1:
+        return ex1
+    else:
+        num -= 1
+        return fibo(num, ex1, ex0+ex1)
+
+n=int(input())
+print(fibo(n))
+
+
+def list_sum_recursive(arr: list) -> int:
+    if not len(arr):
+        return 0
+    elif len(arr)>1:
+        arr[-1]=arr[-2]+arr.pop()
+        list_sum_recursive(arr)
+    return arr[0]
+
+print(list_sum_recursive([1,2,3,4]))
+"""
+
+
+def flatten(arr: list) -> list:
+    
