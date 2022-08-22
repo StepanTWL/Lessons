@@ -256,8 +256,58 @@ def list_sum_recursive(arr: list) -> int:
     return arr[0]
 
 print(list_sum_recursive([1,2,3,4]))
-"""
+
 
 
 def flatten(arr: list) -> list:
-    
+    if not arr:
+        return []
+    if isinstance(arr[0], list):
+        return flatten(arr[0])+flatten(arr[1:])
+    return arr[:1] + flatten(arr[1:])
+
+print(flatten([2,[[[1]]],3]))
+"""
+
+
+def merge_two_list(a, b):
+    i = 0
+    j = 0
+    amount = []
+    while i != len(a) and j != len(b):
+        if a[i] > b[j]:
+            amount.append(b[j])
+            j += 1
+        elif a[i] < b[j]:
+            amount.append(a[i])
+            i += 1
+        else:
+            amount.append(a[i])
+            amount.append(b[j])
+            i += 1
+            j += 1
+        if i == len(a):
+            while j != len(b):
+                amount.append(b[j])
+                j += 1
+            return amount
+        elif j == len(b):
+            while i != len(a):
+                amount.append(a[i])
+                i += 1
+            return amount
+    return amount
+
+
+def merge_sort(s):
+    if len(s)>1:
+        mid = len(s) // 2
+        s1 = s[:mid]
+        s2 = s[mid:]
+        return merge_two_list(merge_sort(s1), merge_sort(s2))
+    else:
+        return s
+
+input()
+arr=list(map(int, input().split()))
+print(merge_sort(arr))
