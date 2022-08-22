@@ -267,47 +267,78 @@ def flatten(arr: list) -> list:
     return arr[:1] + flatten(arr[1:])
 
 print(flatten([2,[[[1]]],3]))
-"""
 
 
-def merge_two_list(a, b):
+from typing import List
+def merge_two_list(a: List[int], b: List[int]) -> List[int]:
     i = 0
     j = 0
-    amount = []
+    arr = []
     while i != len(a) and j != len(b):
         if a[i] > b[j]:
-            amount.append(b[j])
+            arr.append(b[j])
             j += 1
         elif a[i] < b[j]:
-            amount.append(a[i])
+            arr.append(a[i])
             i += 1
         else:
-            amount.append(a[i])
-            amount.append(b[j])
+            arr.append(a[i])
+            arr.append(b[j])
             i += 1
             j += 1
         if i == len(a):
             while j != len(b):
-                amount.append(b[j])
+                arr.append(b[j])
                 j += 1
-            return amount
+            break
         elif j == len(b):
             while i != len(a):
-                amount.append(a[i])
+                arr.append(a[i])
                 i += 1
-            return amount
-    return amount
+            break
+    return arr
 
 
-def merge_sort(s):
+def merge_sort(s: List[int]) -> List[int]:
     if len(s)>1:
-        mid = len(s) // 2
-        s1 = s[:mid]
-        s2 = s[mid:]
-        return merge_two_list(merge_sort(s1), merge_sort(s2))
+        return merge_two_list(merge_sort(s[:len(s)//2]), merge_sort(s[len(s)//2:]))
     else:
         return s
 
-input()
+
+arr=list(map(int, input().split()))
+print(merge_sort(arr))
+
+"""
+
+from typing import List
+def merge_two_list(a: List[int], b: List[int]) -> List[int]:
+    arr = []
+    while len(a) and len(b):
+        if a[0] > b[0]:
+            arr.append(b.pop(0))
+        elif a[0] < b[0]:
+            arr.append(a.pop(0))
+        else:
+            arr.append(a.pop(0))
+            arr.append(b.pop(0))
+        if not len(a):
+            while len(b):
+                arr.append(b.pop(0))
+            break
+        elif not len(b):
+            while len(a):
+                arr.append(a.pop(0))
+            break
+    return arr
+
+
+def merge_sort(s: List[int]) -> List[int]:
+    if len(s)>1:
+        return merge_two_list(merge_sort(s[:len(s)//2]), merge_sort(s[len(s)//2:]))
+    else:
+        return s
+
+
 arr=list(map(int, input().split()))
 print(merge_sort(arr))
