@@ -309,7 +309,6 @@ def merge_sort(s: List[int]) -> List[int]:
 arr=list(map(int, input().split()))
 print(merge_sort(arr))
 
-"""
 
 from typing import List
 def merge_two_list(a: List[int], b: List[int]) -> List[int]:
@@ -342,3 +341,68 @@ def merge_sort(s: List[int]) -> List[int]:
 
 arr=list(map(int, input().split()))
 print(merge_sort(arr))
+
+
+from typing import List
+def quick_sort(s: List[int]) -> List[int]:
+    if not len(s):
+        return None
+    elif len(s)==1:
+        return s
+    elif len(s)==2:
+        if s[0]>s[1]:
+            s.append(s.pop(0))
+        return s
+    oporn=s[len(s)//2:len(s)//2+1]
+    arr1=[]
+    arr2=[]
+    for i in range(len(s)):
+        if i==len(s)//2:
+            continue
+        elif s[i] > oporn[0]:
+            arr2.append(s[i])
+        else:
+            arr1.append(s[i])
+    if not len(arr2):
+        return quick_sort(arr1)+oporn
+    elif not len(arr1):
+        return oporn+quick_sort(arr2)
+    return quick_sort(arr1)+oporn+quick_sort(arr2)
+
+    
+
+s=[19, 4, 5, 17, 1]
+print(quick_sort(s))
+
+
+def text_decor(func):
+
+    def inner(*args, **kwargs):
+        print('Hello')
+        func(*args, **kwargs)
+        print('Goodbye!')
+    
+    return inner
+
+@text_decor
+def simple(n):
+    print('lol'*n)
+
+simple(5)
+
+
+def repeater(func):
+
+    def inner(*args, **kwargs):
+        func(*args, **kwargs)
+        func(*args, **kwargs)
+    
+    return inner
+"""
+
+def double_it(func):
+
+    def inner(*args, **kwargs):
+        func(*args, **kwargs)*2
+
+    return inner
