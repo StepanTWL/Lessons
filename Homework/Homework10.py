@@ -398,11 +398,77 @@ def repeater(func):
         func(*args, **kwargs)
     
     return inner
-"""
+
 
 def double_it(func):
 
     def inner(*args, **kwargs):
-        func(*args, **kwargs)*2
+        result = func(*args, **kwargs)
+        return result*2
 
     return inner
+
+@double_it
+def mult(a,b):
+    return a*b
+
+res = mult(4,6)
+print(res)
+
+
+def file_read(s: str):
+    with open(s, 'r') as file:
+        file.read()
+        file.close()
+
+file_read('myfile.txt')
+
+
+
+import json
+with open('manager_sales.json') as file:
+    data = json.load(file)
+maxx=0
+maxx_index=0
+for i in range(len(data)):
+    sum=0
+    for j in data[i]['cars']:
+        sum+=j['price']
+    if sum>maxx:
+        maxx_index=i
+        maxx=sum
+
+print(data[maxx_index]['manager']['first_name']+' '+ data[maxx_index]['manager']['last_name']+' '+str(maxx))
+file.close()
+
+
+import json
+with open('group_people.json') as file:
+    data = json.load(file)
+count=[]
+
+for i in range(len(data)):
+    count.append(0)
+    for j in data[i]['people']:
+        if j['year']>1977 and j['gender']=='Female':
+            count[-1]+=1
+print(count.index(max(count))+1, max(count))
+"""
+
+import json
+with open('Abracadabra__1_.txt', 'r') as file:
+    s=file.read()
+    file.close()
+with open('Alphabet.json', 'r') as file:
+    data=json.load(file)
+    file.close()
+for i in range(len(s)):
+    if not data[s[i]]==None:
+        if not i:
+            s=data[s[i]]+s[i+1:]
+        elif i==len(s)-1:
+            s=s[:i]+data[s[i]]
+        else:
+            s=s[:i]+data[s[i]]+s[i+1:]
+
+print(s)
