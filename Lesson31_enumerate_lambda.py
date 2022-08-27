@@ -9,6 +9,10 @@ for index,value in enumerate(a,10):
 r = lambda x: x**2
 h = lambda : 'hello'
 t = lambda x: 'positive' if x>0 else 'negative'
+f1 = lambda x: 'Like' if x > 100 else ('Subscribe' if x > 0 else 'Follow me')
+print(f1(200))#Like
+print(f1(50))#Subscribe
+print(f1(-20))#Follow me
 
 print(r(7))
 print(h())
