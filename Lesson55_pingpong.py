@@ -5,7 +5,7 @@ winndow = turtle.Screen()
 winndow.title('Ping-Pong')
 winndow.setup(width=1.0, height=1.0)
 winndow.bgcolor('black')
-winndow.tracer(1)
+winndow.tracer(2)
 
 border = turtle.Turtle()
 border.hideturtle()
@@ -49,7 +49,19 @@ rocket_b.penup()
 rocket_b.goto(450,0)
 rocket_b.showturtle()
 
-
+FONT=('Arial', 44)
+score_a = 0
+s1=turtle.Turtle(visible=False)
+s1.color('white')
+s1.penup()
+s1.setposition(-200, 300)
+s1.write(score_a, font=FONT)
+score_b = 0
+s2=turtle.Turtle(visible=False)
+s2.color('white')
+s2.penup()
+s2.setposition(200, 300)
+s2.write(score_b, font=FONT)
 
 def move_up_a():
     y = rocket_a.ycor() + 10
@@ -76,7 +88,7 @@ def move_down_b():
     rocket_b.sety(y)
 
 ball = turtle.Turtle()
-ball.speed(0)
+ball.speed(2)
 ball.color('red')
 ball.shape('circle')
 ball.penup()
@@ -99,9 +111,26 @@ while True:
 
     if ball.ycor() >= 290 or ball.ycor() <= -290:
         ball.dy = -ball.dy
-    if ball.xcor() >= 490 or ball.xcor() <= -490:
+    if ball.xcor() >= 490:
+        score_b += 1
+        s2.clear()
+        s2.write(score_b, font=FONT)
         ball.goto(0,random.randint(-150,150))
         ball.dx = random.choice([-4,-3,-2,2,3,4])
         ball.dy = random.choice([-4,-3,-2,2,3,4])
+    
+    if ball.xcor() <= -490:
+        score_a += 1
+        s1.clear()
+        s1.write(score_a, font=FONT)
+        ball.goto(0,random.randint(-150,150))
+        ball.dx = random.choice([-4,-3,-2,2,3,4])
+        ball.dy = random.choice([-4,-3,-2,2,3,4])
+
+    if ball.ycor()+10 >= rocket_b.ycor()-50 and ball.ycor()+10 <= rocket_b.ycor()+50 and ball.xcor()+10 >= rocket_b.xcor()-5 and ball.xcor()+10 <= rocket_b.xcor()+5:
+        ball.dx = -ball.dx
+    if ball.ycor()-10 >= rocket_a.ycor()-50 and ball.ycor()-10 <= rocket_a.ycor()+50 and ball.xcor()-10 >= rocket_a.xcor()-5 and ball.xcor()-10 <= rocket_a.xcor()+5:
+        ball.dx = -ball.dx
+
 
 winndow.mainloop()
