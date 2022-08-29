@@ -108,7 +108,7 @@ for i in arr:
                 print(j, end=' ')
         print()
 print()
- """
+ 
 
 
 
@@ -134,3 +134,20 @@ for i in arr:
     else:
         print()
 print()
+
+
+s=input().lower()
+sett=set(s)
+if len(sett)==26:
+    print('YES')
+else:
+    print('NO')
+"""
+
+
+year=int(input())
+for i in range(year+1,10000):
+    sett=set(str(i))
+    if len(sett) == 4:
+        print(i)
+        break
