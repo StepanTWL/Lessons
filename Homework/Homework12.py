@@ -88,7 +88,7 @@ match lang:
         print('28')
     case _:
         print('0')
-"""
+
 
 if (money := int(input())) > 10000:
     print (f"Ого! {money}! Куда вам столько? Мы заберем {money - 10000}")
@@ -97,3 +97,98 @@ else:
 
 print('Mercury', 'Venus', sep='*', end='!')
 print('Mars', 'Jupiter', sep='**', end='?')
+
+
+
+n=int(input())
+k=int(input())
+arr=[i for i in range(1,n+1)]
+count = k-1
+while len(arr)>1:
+    while count>=len(arr):
+        count = count-len(arr)
+    arr.pop(count)
+    count+=k-1
+print(*arr)
+
+
+a=b=c=d=0
+n=int(input())
+for i in range(n):
+    x,y = list(map(str, input().split()))
+    if x[0]=='-':
+        x=-1*int(x[1:])
+    else:
+        x=int(x)
+    if y[0]=='-':
+        y=-1*int(y[1:])
+    else:
+        y=int(y)
+    if x>0 and y>0:
+        a+=1
+    elif x<0 and y>0:
+        b+=1
+    elif x<0 and y<0:
+        c+=1
+    elif x>0 and y<0:
+        d+=1
+print(f"Первая четверть: {a}")
+print(f"Вторая четверть: {b}")
+print(f"Третья четверть: {c}")
+print(f"Четвертая четверть: {d}")
+
+
+count=0
+arr=list(map(int, input().split()))
+for i in range(len(arr)-1):
+    if arr[i]<arr[i+1]:
+        count+=1
+print(count)
+
+
+arr=list(map(int, input().split()))
+for i in range(len(arr)//2):
+    arr[i*2], arr[i*2+1] = arr[i*2+1], arr[i*2]
+print(*arr)
+
+
+arr=list(map(int, input().split()))
+arr1=[0]*len(arr)
+for i in range(len(arr)):
+    if i==len(arr)-1:
+        arr1[0] = arr[i]
+    else:
+        arr1[i+1] = arr[i]
+print(*arr1)
+
+
+
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(int(input()))
+mul=int(input())
+suc=0
+for i in range(n):
+    for j in range(n):
+        if arr[i]*arr[j]==mul and not i==j:
+            suc=1
+            break
+    if suc:
+        break
+if suc:
+    print('ДА')
+else:
+    print('НЕТ')
+
+
+s1=input()
+s2=input()
+if s1==s2:
+    print('ничья')
+elif (s1=='камень' and s2=='ножницы') or (s1=='бумага' and s2=='камень') or (s1=='ножницы' and s2=='бумага'):
+    print('Руслан')
+else:
+    print('Тимур')
+"""
+
