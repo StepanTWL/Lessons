@@ -190,5 +190,71 @@ elif (s1=='камень' and s2=='ножницы') or (s1=='бумага' and s2
     print('Руслан')
 else:
     print('Тимур')
-"""
 
+
+# камень, ножницы, бумага, ящерица, Спок
+rules_game = {
+    'камень'    :[['ножницы', 'ящерица'],   ['бумага', 'Спок']],
+    'ножницы'   :[['ящерица', 'бумага'],    ['камень', 'Спок']],
+    'бумага'    :[['Спок', 'камень'],       ['ящерица', 'ножницы']],
+    'ящерица'   :[['Спок', 'бумага'],       ['камень', 'ножницы']],
+    'Спок'      :[['ножницы', 'камень'],    ['ящерица', 'бумага']],
+}
+
+s1=input()
+s2=input()
+
+if s2 in rules_game[s1][0]:
+    print('Тимур')
+elif s2 in rules_game[s1][1]:
+    print('Руслан')
+else:
+    print('ничья')
+
+
+maxO=maxP=0
+countO=countP=0
+s=input()
+if len(s):
+    for i in s:
+        if i=='Р':
+            countP += 1
+        else:
+            if countP > maxP:
+                maxP = countP
+            countP = 0
+    if countP > maxP:
+        maxP = countP
+    print(maxP)
+
+else:
+    print(0)
+
+
+n=int(input())
+arr=[]
+num=[]
+for i in range(n):
+    flag=0
+    arr.append(input())
+    for j in 'anton':
+        if j in arr[i]:
+            arr[i] = arr[i][arr[i].find(j)::]
+            flag+=1
+    if flag == 5:
+        num.append(i+1)
+print(*num)        
+
+
+
+s=input()
+s+=' запретил букву '
+letter='абвгдежзийклмнопрстуфхцчшщъыьэюя'
+for i in letter:
+    if i in s:
+        print(s+i)
+        s=s.replace(i,'')
+        s=s.lstrip()
+        while '  ' in s:
+            s=s.replace('  ', ' ')
+"""
