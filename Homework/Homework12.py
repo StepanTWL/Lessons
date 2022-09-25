@@ -296,7 +296,7 @@ else:
                 arr[i][j]=''
     for i in range(n):
         print(*arr[i])
-"""
+
 
 count=1
 arr=list(map(str, input().split()))
@@ -311,5 +311,50 @@ for i in range(1,len(arr)):
         arr += arr2
         count = 1
 pass
-        
 
+
+n=int(input())
+count=0
+arr=[[0]*4 for i in range(n)]
+for i in range(n):
+    arr[i]=list(map(int, input().split()))
+for i in range(n):
+    for j in range(n):
+        if arr[i][j]>sum(arr[i])/len(arr[i]):
+            count+=1
+    print(count)
+    count=0
+pass
+
+
+n=int(input())
+arr=[[0]*n for i in range(n)]
+for i in range(n):
+    arr[i]=list(map(int, input().split()))
+maxx=arr[0][0]
+for i in range(n):
+    for j in range(i+1):
+        if maxx<arr[i][j]:
+            maxx=arr[i][j]
+print(maxx)
+
+
+n=int(input())
+arr=[[0]*n for i in range(n)]
+for i in range(n):
+    arr[i]=list(map(int, input().split()))
+maxx=arr[0][0]
+for i in range(n):
+    for j in range(n):
+        if (i<=n//2 and (j <= i or j >= n-i-1)) or (i>n//2 and (n-j-1>=i or j>=i)):
+            if maxx<arr[i][j]:
+                maxx=arr[i][j]
+print(maxx)
+"""
+
+
+a=int(input())
+b=int(input())
+print(a*b//2)
+print(round(a*b/2, 1))
+print(a*b/2)
