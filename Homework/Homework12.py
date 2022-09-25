@@ -257,4 +257,59 @@ for i in letter:
         s=s.lstrip()
         while '  ' in s:
             s=s.replace('  ', ' ')
+
+
+list1 = [[1, 7, 8], [9, 7, 102], [6, 106, 105], [100, 99, 98, 103], [1, 2, 3]]
+maximum = -1
+for i in range(len(list1)):
+    for j in range(len(list1[i])):
+        if maximum<list1[i][j]:
+            maximum = list1[i][j]
+print(maximum)
+
+
+
+n=int(input())
+arr=[]
+for j in range(1,n+1):
+    arr.append([i for i in range(1,j+1)])
+for i in arr:
+    print(i)
+pass
+
+
+n=int(input())
+if n==0:
+    arr=[0]
+    print(arr)
+else:
+    arr = [[0]*n for i in range(n)]
+    for i in range(n):
+        arr[i][0] = 1
+    for i in range(1,n):
+        for j in range(1,n):
+            arr[i][j] = arr[i-1][j-1]+arr[i-1][j]
+        arr[i][0] = 1
+    for i in range(n):
+        for j in range(n):
+            if arr[i][j]==0:
+                arr[i][j]=''
+    for i in range(n):
+        print(*arr[i])
 """
+
+count=1
+arr=list(map(str, input().split()))
+for i in range(1,len(arr)):
+    if arr[i]==arr[i-1]:
+        count+=1
+    elif count != 1:
+        arr1=[arr[i-1] for j in range(count)]
+        arr2=arr[i:]
+        arr=arr[0:i-count]
+        arr.append(arr1)
+        arr += arr2
+        count = 1
+pass
+        
+
