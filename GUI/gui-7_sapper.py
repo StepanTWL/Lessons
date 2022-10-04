@@ -32,9 +32,9 @@ class MyButton(tk.Button):
 class MineSweeper:
 
     window = tk.Tk()
-    ROW = 5
-    COLUMN = 7
-    MINES = 7
+    ROW = 10
+    COLUMN = 10
+    MINES = 15
     IS_GAME_OVER = False
     IS_FIRST_CLICK = True
 
@@ -64,7 +64,7 @@ class MineSweeper:
     def click(self, clicked_button:MyButton):
 
         if MineSweeper.IS_GAME_OVER:
-            return None
+            return
 
         if MineSweeper.IS_FIRST_CLICK:
             self.insert_mines(clicked_button.number)
@@ -80,8 +80,8 @@ class MineSweeper:
             for i in range(1, MineSweeper.ROW+1):
                 for j in range(1, MineSweeper.COLUMN+1):
                     clicked_button = self.buttons[i][j]
-                    if btn.is_mine:
-                        btn['text'] = '*'
+                    if clicked_button.is_mine:
+                        clicked_button['text'] = '*'
         else:
             color = colors.get(clicked_button.count_bomb, 'black')
             if clicked_button.count_bomb:
@@ -115,7 +115,7 @@ class MineSweeper:
                              queue.append(next_btn)
 
     def reload(self):
-        [child.destroy() for child in self.window.winfo_children()[0].destroy()]
+        [child.destroy() for child in self.window.winfo_children()]
         self.__init__()
         self.create_widgets()
         MineSweeper.IS_FIRST_CLICK = True
@@ -123,10 +123,10 @@ class MineSweeper:
 
     def create_settings_win(self):
         win_settings = tk.Toplevel(self.window)
-        win_settings.wm_title('Насиройки')
-        tk.Label(win_settings, text='Количество строк').grid(row=0, column=0)
-        tk.Label(win_settings, text='Количество колонок').grid(row=1, column=0)
-        tk.Label(win_settings, text='Количество мин').grid(row=2, column=0)
+        win_settings.wm_title('Настройки')
+        tk.Label(win_settings, text='Количество строк').grid(row=0, column=0, stick='w')
+        tk.Label(win_settings, text='Количество колонок').grid(row=1, column=0, stick='w')
+        tk.Label(win_settings, text='Количество мин').grid(row=2, column=0, stick='w')
         row_entry = tk.Entry(win_settings)
         row_entry.insert(0, MineSweeper.ROW)
         row_entry.grid(row=0, column=1, padx=20, pady=20)
@@ -136,8 +136,8 @@ class MineSweeper:
         mines_entry = tk.Entry(win_settings)
         mines_entry.insert(0, MineSweeper.MINES)
         mines_entry.grid(row=2, column=1, padx=20, pady=20)
-        save_btn = tk.Button(win_settings, text='Применить', command=lambda :self.change_settings(row_entry, column_entry))
-        save_btn.grid(rom=3, column=0, columnspan=2, padx=10, pady=10)
+        save_btn = tk.Button(win_settings, text='Применить', command=lambda :self.change_settings(row_entry, column_entry, mines_entry))
+        save_btn.grid(row=3, column=0, columnspan=2, padx=20, pady=20)
 
     def change_settings(self, row: tk.Entry, column: tk.Entry, mines: tk.Entry):
         try:
