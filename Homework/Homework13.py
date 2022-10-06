@@ -1,3 +1,4 @@
+"""
 row,col = map(int, input().split())
 arr=[[0]*col for i in range(row)]
 count=1
@@ -170,3 +171,63 @@ while len(arr):
         else:
             arr1.append(arr.pop(0))
 print(arr1)
+
+
+row,col = map(int, input().split())
+arr1=[]
+arr2=[]
+arr=[[0]*col for i in range(row)]
+for i in range(row):
+    arr1.append(list(map(int, input().split())))
+input()
+for i in range(row):
+    arr2.append(list(map(int, input().split())))
+for i in range(row):
+    for j in range(col):
+        arr[i][j] = arr1[i][j]+arr2[i][j]
+for i in range(row):
+    print(*arr[i])
+
+
+row1,col1 = map(int, input().split())
+arr1=[]
+for i in range(row1):
+    arr1.append(list(map(int, input().split())))
+input()
+row2,col2 = map(int, input().split())
+arr2=[]
+for i in range(row2):
+    arr2.append(list(map(int, input().split())))
+
+arr=[[0]*col2 for i in range(row1)]
+
+for i in range(row1):
+    for j in range(col2):
+        sum=0
+        for k in range(col1):
+            sum += arr1[i][k]*arr2[k][j]
+        arr[i][j]=sum
+for i in range(row1):
+    print(*arr[i])
+"""
+
+import copy
+arr=[]
+n = int(input())
+for i in range(n):
+    arr.append(list(map(int, input().split())))
+m = int(input())
+
+arr_tmp = copy.deepcopy(arr)
+arr1=[[0]*n for i in range(n)]
+
+for i in range(m-1):
+    for j in range(n):
+        for k in range(n):
+            sum=0
+            for l in range(n):
+                sum += arr[j][l]*arr_tmp[l][k]
+            arr1[j][k]=sum
+    arr_tmp = copy.deepcopy(arr1)
+for i in range(n):
+    print(*arr_tmp[i])
