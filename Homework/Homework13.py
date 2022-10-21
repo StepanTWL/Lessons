@@ -209,7 +209,7 @@ for i in range(row1):
         arr[i][j]=sum
 for i in range(row1):
     print(*arr[i])
-"""
+
 
 import copy
 arr=[]
@@ -231,3 +231,105 @@ for i in range(m-1):
     arr_tmp = copy.deepcopy(arr1)
 for i in range(n):
     print(*arr_tmp[i])
+
+
+import re
+
+arr=list(map(str, (re.sub(r'[.,;:-?-!]', '', input())).lower().split()))
+for i in range(len(arr)):
+    if not arr[i][-1].isalpha():
+        arr[i] = arr[i][:-1]
+print(len(set(arr)))
+
+
+
+arr=list(map(int, input().split()))
+print('NO')
+for i in range(1,len(arr)):
+    if arr[i] in arr[:i]:
+        print('YES')
+    else:
+        print('NO')
+
+
+sett1=set(map(int, input().split()))
+sett2=set(map(int, input().split()))
+print(*(sorted(sett1 & sett2)))
+
+
+n=int(input())
+sett=set(input())
+for i in range(1, n):
+    sett = sett & set(input())
+if len(sett):
+    print(*sorted(sett))
+
+
+sett1=set(input())
+sett2=set(input())
+if (sett1 & sett2):
+    print('YES')
+else:
+    print('NO')
+
+
+
+sett1=set(map(int, input().split()))
+sett2=set(map(int, input().split()))
+sett3=set(map(int, input().split()))
+sett4=sorted(sett3 - (sett1 | sett2), reverse=True)
+print(*sett4)
+
+
+sett=set(range(11))
+sett1=set(map(int, input().split()))
+sett2=set(map(int, input().split()))
+sett3=set(map(int, input().split()))
+sett4=sorted(sett - (sett1 | sett2 | sett3))
+print(*sett4)
+
+
+
+words = ['Plum', 'Grapefruit', 'apple', 'orange', 'pomegranate', 'Cranberry', 'lime', 'Lemon', 'grapes', 'persimmon', 'tangerine', 'Watermelon', 'currant', 'Almond']
+mywords = {c for c in words if c[0].islower()}
+print(*sorted(mywords))
+
+
+words = ['Plum', 'Grapefruit', 'apple', 'orange', 'pomegranate', 'Cranberry', 'lime', 'Lemon', 'grapes', 'persimmon', 'tangerine', 'Watermelon', 'currant', 'Almond']
+mywords = {c.lower() for c in words}
+print(*sorted(mywords))
+
+
+import re
+sentence = '''My very photogenic mother died in a freak accident (picnic, lightning) when I was three, and, save for a pocket of warmth in the darkest past, nothing of her subsists within the hollows and dells of memory, over which, if you can still stand my style (I am writing under observation), the sun of my infancy had set: surely, you all know those redolent remnants of day suspended, with the midges, about some hedge in bloom or suddenly entered and traversed by the rambler, at the bottom of a hill, in the summer dusk; a furry warmth, golden midges.'''
+mywords = {c for c in (re.sub(r'[().,;:-?-!]', '', sentence)).lower().split() if len(c)<4}
+print(*sorted(mywords))
+
+
+
+files = ['python.png', 'qwerty.py', 'stepik.png', 'beegeek.org', 'windows.pnp', 'pen.txt', 'phone.py', 'book.txT', 'board.pNg', 'keyBoard.jpg', 'Python.PNg', 'apple.jpeg', 'png.png', 'input.tXt', 'split.pop', 'solution.Py', 'stepik.org', 'kotlin.ko', 'github.git']
+myfiles = {c.lower() for c in files if c[-4::].lower() == '.png'}
+print(*sorted(myfiles))
+"""
+
+users = [{'name': 'Todd', 'phone': '551-1414', 'email': 'todd@gmail.com'},
+         {'name': 'Helga', 'phone': '555-1618', 'email': 'helga@mail.net'},
+         {'name': 'Olivia', 'phone': '449-3141', 'email': ''},
+         {'name': 'LJ', 'phone': '555-2718', 'email': 'lj@gmail.net'},
+         {'name': 'Ruslan', 'phone': '422-145-9098', 'email': 'rus-lan.cha@yandex.ru'},
+         {'name': 'John', 'phone': '233-421-32', 'email': ''},
+         {'name': 'Lara', 'phone': '+7998-676-2532', 'email': 'g.lara89@gmail.com'},
+         {'name': 'Alina', 'phone': '+7948-799-2434', 'email': 'ali.ch.b@gmail.com'},
+         {'name': 'Robert', 'phone': '420-2011', 'email': ''},
+         {'name': 'Riyad', 'phone': '128-8890-128', 'email': 'r.mahrez@mail.net'},
+         {'name': 'Khabib', 'phone': '+7995-600-9080', 'email': 'kh.nurmag@gmail.com'},
+         {'name': 'Olga', 'phone': '6449-314-1213', 'email': ''},
+         {'name': 'Roman', 'phone': '+7459-145-8059', 'email': 'roma988@mail.ru'},
+         {'name': 'Maria', 'phone': '12-129-3148', 'email': 'm.sharapova@gmail.com'},
+         {'name': 'Fedor', 'phone': '+7445-341-0545', 'email': ''},
+         {'name': 'Tim', 'phone': '242-449-3141', 'email': 'timm.ggg@yandex.ru'}]
+
+my_dict = {}
+for i in users:
+    for j in i:
+        if j
