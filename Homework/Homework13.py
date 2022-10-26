@@ -310,7 +310,21 @@ print(*sorted(mywords))
 files = ['python.png', 'qwerty.py', 'stepik.png', 'beegeek.org', 'windows.pnp', 'pen.txt', 'phone.py', 'book.txT', 'board.pNg', 'keyBoard.jpg', 'Python.PNg', 'apple.jpeg', 'png.png', 'input.tXt', 'split.pop', 'solution.Py', 'stepik.org', 'kotlin.ko', 'github.git']
 myfiles = {c.lower() for c in files if c[-4::].lower() == '.png'}
 print(*sorted(myfiles))
-"""
+
+
+n = int(input("n="))#поиск простых чисел
+a = [i for i in range(n)]
+a[1] = 0
+lst = []
+i = 2
+while i < n:
+    if a[i] != 0:
+        lst.append(a[i])
+        for j in range(i, n, i):
+            a[j] = 0
+    i += 1
+print (*lst)
+
 
 users = [{'name': 'Todd', 'phone': '551-1414', 'email': 'todd@gmail.com'},
          {'name': 'Helga', 'phone': '555-1618', 'email': 'helga@mail.net'},
@@ -329,7 +343,92 @@ users = [{'name': 'Todd', 'phone': '551-1414', 'email': 'todd@gmail.com'},
          {'name': 'Fedor', 'phone': '+7445-341-0545', 'email': ''},
          {'name': 'Tim', 'phone': '242-449-3141', 'email': 'timm.ggg@yandex.ru'}]
 
-my_dict = {}
+my_list = []
 for i in users:
-    for j in i:
-        if j
+    if i['phone'][-1] == '8':
+        my_list.append(i['name'])
+print(*sorted(my_list))
+
+
+
+
+numbers = {
+    '0': 'zero',
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+    '6': 'six',
+    '7': 'seven',
+    '8': 'eight',
+    '9': 'nine',
+}
+
+s=input()
+for i in s:
+    print(numbers[i], end=' ')
+
+
+
+courses = {
+    'CS101': 'CS101: 3004, Хайнс, 8:00',
+    'CS102': 'CS102: 4501, Альварадо, 9:00',
+    'CS103': 'CS103: 6755, Рич, 10:00',
+    'NT110': 'NT110: 1244, Берк, 11:00',
+    'CM241': 'CM241: 1411, Ли, 13:00',
+}
+print(courses[input()])
+
+
+d = {
+    "1": ".,?!:",
+    "2": "ABC",
+    "3": "DEF",
+    "4": "GHI",
+    "5": "JKL",
+    "6": "MNO",
+    "7": "PQRS",
+    "8": "TUV",
+    "9": "WXYZ",
+    "0": " "
+}
+s=input().upper()
+my_dick = {}
+for i in d:
+    for j in range(len(d[i])):
+        my_dick[d[i][j]] = i*(j+1)
+for i in s:
+    if i in my_dick:
+        print(my_dick[i],end='')
+
+
+letters = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789']
+morse = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
+my_dict = {}
+for i in range(len(letters)):
+    my_dict[letters[i]] = morse[i]
+s=input().upper()
+for i in s:
+    if i in my_dict:
+        print(my_dict[i], end=' ')
+
+
+def make_header(s: str, lvl: int = 1) -> str:
+    return (f'<h{lvl}>{s}</h{lvl}>')
+
+make_header('Нет')
+"""
+
+def create_matrix(size: int = 3, up_fill: int = 0, down_fill: int = 0) -> list:
+    arr = [[0]*size for i in range(size)]
+    for i in range(size):
+        for j in range(size):
+            if i==j:
+                arr[i][j]=i+1
+            if i>j:
+                arr[i][j]=down_fill
+            if i<j:
+                arr[i][j]=up_fill
+    return(arr)
+print(create_matrix())
