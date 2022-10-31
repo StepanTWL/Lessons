@@ -1,13 +1,24 @@
-f=open("dirc_in.txt", "r")
-count = sum(1 for line in f)
-f.seek(0)
-arr = []
-for i in range(count):
-    arr.append([x for x in f.readline().split()])
-f.close()
-f=open("dirc_out.txt", "w")
-for i in range(len(arr[0])):
-    for j in range(len(arr[1])):
-        f.write(arr[0][i]+arr[1][j]+'\n')
-        f.write(arr[0][i]+arr[1][j]+'!'+'\n')
-f.close()
+
+arr=[]
+with open('dirc_in.txt', 'r') as file:
+    for line in file:
+        if len(line)>1:
+            arr.append(line[:-1])
+        else:
+            arr.append(line)
+    file.close()
+
+with open('dirc_out.txt', 'w') as file:
+    for first in arr:
+        file.write(first+'\n')
+        if first[0].isalnum():
+            file.write(first[0].upper()+first[1:]+'\n')
+        for second in arr:
+            file.write(first+second+'\n')
+            if first[0].isalnum():
+                file.write(first[0].upper()+first[1:]+second+'\n')
+            for third in arr:
+                file.write(first+second+third+'\n')
+                if first[0].isalnum():
+                    file.write(first[0].upper()+first[1:]+second+third+'\n')
+    file.close()
