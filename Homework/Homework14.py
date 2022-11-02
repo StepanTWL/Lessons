@@ -167,13 +167,17 @@ for i in arr1:
 """
 
 
-sec=set(input())
+sec=input()
 my_dict = {}
-for i in sec:
-    
-n=int(input())
 my_dict1 = {}
+n=int(input())
 for i in range(n):
-    arr=input().split(': ')
-    my_dict1[arr[0]] = arr[1]
+    s=input()
+    my_dict[s[3]] = s[0]
+for i in sec:
+    my_dict1[i] = str(sec.count(i))
+word = ''
+for i in sec:
+    word += my_dict[my_dict1[i]]
+print(word)
 pass
