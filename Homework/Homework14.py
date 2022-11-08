@@ -217,10 +217,49 @@ result = {letter: letters[letter] for letter in letters if not letter in remove_
 
 students = {'Timur': (170, 75), 'Ruslan': (180, 105), 'Soltan': (192, 68), 'Roman': (175, 70), 'Madlen': (160, 50), 'Stefani': (165, 70), 'Tom': (190, 90), 'Jerry': (180, 87), 'Anna': (172, 67), 'Scott': (168, 78), 'John': (186, 79), 'Alex': (195, 120), 'Max': (200, 110), 'Barak': (180, 89), 'Donald': (170, 80), 'Rustam': (186, 100), 'Alice': (159, 59), 'Rita': (170, 80), 'Mary': (175, 69), 'Jane': (190, 80)}
 result = {student: students[student] for student in students if students[student][0]>167 and students[student][1]<75}
-"""
+
 
 tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12), (13, 14, 15), (16, 17, 18), (19, 20, 21), (22, 23, 24), (25, 26, 27), (28, 29, 30), (31, 32, 33), (34, 35, 36)]
-result = {tuple[0]: tuples[tuple] for tuple in tuples}
+result = {tuple[0]: tuple[1:] for tuple in tuples}
 
 
+student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012', 'S013'] 
+student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti', 'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman', 'Tom Hardy'] 
+student_grades = [86, 98, 89, 92, 45, 67, 89, 90, 100, 98, 10, 96, 93]
+#results = [i for i in zip(student_ids, student_names, student_grades)]
+#result = [{result[0]: {result[1]: result[2]}} for result in results]
+result = [{i[0]: {i[1]: i[2]}} for i in zip(student_ids, student_names, student_grades)]
+#[{'S001': {'Camila Rodriguez': 86}}, {'S002': {'Juan Cruz': 98}},...]
+
+
+
+import random
+
+length = int(input())    # длина пароля
+s=''
+for i in range(length):
+    n = 91
+    while n > 90 and n < 97:
+        n = random.randint(65,122)
+    s += chr(n)
+print(s)
+
+
+
+import random
+import string
+
+def generate_index():
+    return f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}{random.choice(string.digits)}_{random.choice(string.digits)}{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
+"""
+
+import random
+
+arr=[]
+for i in range(100):
+    n=random.randint(1000000,9999999)
+    while n in arr:
+        n = random.randint(1000000,9999999)
+    arr.append(n)
+    print(arr[-1])
 pass
