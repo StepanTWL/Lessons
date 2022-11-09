@@ -251,15 +251,58 @@ import string
 
 def generate_index():
     return f"{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}{random.choice(string.digits)}_{random.choice(string.digits)}{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}"
-"""
+
 
 import random
 
 arr=[]
 for i in range(100):
-    n=random.randint(1000000,9999999)
+    n=random.randint(1000000, 9999999)
     while n in arr:
-        n = random.randint(1000000,9999999)
+        n = random.randint(1000000, 9999999)
     arr.append(n)
     print(arr[-1])
+
+
+import random
+
+arr = list(input())
+random.shuffle(arr)
+print(*arr, sep='')
+
+import random
+
+arr=[[0]*5 for i in range(5)]
+arr1=[]
+for i in range(5):
+    for j in range(5):
+        if i==j==2:
+            arr[i][j]=0
+        else:
+            n = random.randint(1, 75)
+            while n in arr1:
+                n=random.randint(1, 75)
+            arr[i][j]=n
+            arr1.append(n)
+for i in range(5):
+    for j in range(5):
+        print(str(arr[i][j]).ljust(3), end='')
+    print()
+
+import random
+
+n = int(input())
+arr = []
+for i in range(n):
+    arr.append(input())
+random.shuffle(arr)
+for i in range(n):
+    if i==n-1:
+        print(f'{arr[i]} - {arr[0]}')
+    else:
+        print(f'{arr[i]} - {arr[i+1]}')
+"""
+
+
+
 pass
