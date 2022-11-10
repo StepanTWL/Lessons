@@ -6,7 +6,7 @@ def double_fact(n :int) ->int:#факториал
         return 2
     else:
         return n*double_fact(n-2)
-    
+
 
 
 dict1 = {'a': 100, 'z': 333, 'b': 200, 'c': 300, 'd': 45, 'e': 98, 't': 76, 'q': 34, 'f': 90, 'm': 230}
@@ -223,8 +223,8 @@ tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12), (13, 14, 15), (16, 17, 
 result = {tuple[0]: tuple[1:] for tuple in tuples}
 
 
-student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012', 'S013'] 
-student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti', 'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman', 'Tom Hardy'] 
+student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012', 'S013']
+student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti', 'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman', 'Tom Hardy']
 student_grades = [86, 98, 89, 92, 45, 67, 89, 90, 100, 98, 10, 96, 93]
 #results = [i for i in zip(student_ids, student_names, student_grades)]
 #result = [{result[0]: {result[1]: result[2]}} for result in results]
@@ -303,6 +303,31 @@ for i in range(n):
         print(f'{arr[i]} - {arr[i+1]}')
 """
 
+import random
+from string import ascii_uppercase, ascii_lowercase, digits
+from typing import List
+
+LETTER = {'EN': [x for x in ascii_uppercase if x not in 'OI'],
+          'en': [x for x in ascii_lowercase if x not in 'ol'],
+          'dig': [x for x in digits if x not in '01']}
+
+def generate_password(length: int) -> str:
+    s = random.choice(LETTER['EN']) + random.choice(LETTER['en']) + random.choice(LETTER['dig'])
+    for i in range(length-3):
+        n = random.randint(50, 122)
+        while 57 < n < 65 or 90 < n < 97 or n == 73 or n == 79 or n == 108 or n == 111:
+            n = random.randint(50, 122)
+        s += chr(n)
+    return s
 
 
-pass
+def generate_passwords(count: int, length: int) -> List[str]:
+    arr = []
+    for i in range(count):
+        arr.append(generate_password(length))
+    return arr
+
+
+n = int(input())
+m = int(input())
+print(*generate_passwords(n, m), sep='\n')
