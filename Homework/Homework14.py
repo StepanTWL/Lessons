@@ -369,7 +369,7 @@ arr = list(map(Decimal, s.split()))
 arr = sorted(arr, reverse=True)
 print(sum(arr))
 print(*arr[:5])
-"""
+
 
 from decimal import *
 num = Decimal(input())
@@ -377,4 +377,10 @@ if abs(num) > 1:
     print(max(num.as_tuple().digits)+min(num.as_tuple().digits))
 else:
     print(max(num.as_tuple().digits))
+"""
+
+from decimal import *
+num = Decimal(input())
+print(num.exp()+num.ln()+num.log10()+num.sqrt())
+
 pass
