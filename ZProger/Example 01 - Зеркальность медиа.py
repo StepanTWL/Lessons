@@ -20,4 +20,5 @@ def create_image(image_path):
             pixels[w, h] = image_pixels_list[w][h]
     img.save(f'result/{int(time.time())}.jpeg')
 
+
 create_image('1.jpeg')
