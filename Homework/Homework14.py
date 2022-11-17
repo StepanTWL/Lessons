@@ -410,7 +410,7 @@ print(f'{a} + {b} = {Fraction(a)+Fraction(b)}')
 print(f'{a} - {b} = {Fraction(a)-Fraction(b)}')
 print(f'{a} * {b} = {Fraction(a)*Fraction(b)}')
 print(f'{a} / {b} = {Fraction(a)/Fraction(b)}')
-"""
+
 from fractions import Fraction
 from math import factorial
 
@@ -420,4 +420,28 @@ for i in range(1, n+1):
     sum += Fraction(1, factorial(i))
 print(sum)
 
+from fractions import Fraction
+from math import gcd
+
+arr = []
+n = int(input())
+for i in range(1, n + 1):
+    for j in range(1, n + 1):
+        if i + j == n and i < j and gcd(i, j)==1:
+            arr.append(Fraction(i, j))
+print(max(arr))
+"""
+from fractions import Fraction
+from math import gcd
+
+arr = []
+n = int(input())
+for i in range(1, n + 1):
+    for j in range(1, n + 1):
+        if i < j and gcd(i, j) == 1:
+            a = Fraction(i, j)
+            arr.append(a)
+sorted(arr)
+for i in arr:
+    print(i)
 pass
