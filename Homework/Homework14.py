@@ -430,7 +430,7 @@ for i in range(1, n + 1):
         if i + j == n and i < j and gcd(i, j)==1:
             arr.append(Fraction(i, j))
 print(max(arr))
-"""
+
 from fractions import Fraction
 from math import gcd
 
@@ -444,4 +444,48 @@ for i in range(1, n + 1):
 sorted(arr)
 for i in arr:
     print(i)
+
+"""
+
+
+def binary_to_decimal(s: str) -> int:
+    n = int(s)
+    a = 0
+    count = 0
+    while n > 0:
+        if n % 10:
+            a += 2 ** count
+        count += 1
+        n //= 10
+    return a
+
+
+arr = []
+arr1 = []
+n = int(input('количество бит - '))
+m = input('исключение - ')
+for i in range(2 ** n):
+    arr.append(bin(i)[2:].zfill(n))
+for i in arr:
+    if i.count(m) == 0:
+        arr1.append(i)
+a = 0
+with open('decoder.h', 'w') as file:
+    file.write('direct = [ \n')
+    for binary in arr1:
+        file.write('0b' + m + binary + ',' + '\n')
+        a += 1
+        if a == 256:
+            break
+    file.write(']\n')
+    file.write('\n')
+    file.write('back = [ \n')
+    arr2 = [0] * (binary_to_decimal(arr1[255]) + 1)
+    for i in range(len(arr2)):
+        if arr1.count(bin(i)[2+len(m):].zfill(n)):
+            arr2[i] = arr1.index(bin(i)[2+len(m):].zfill(n))
+    for decimal in arr2:
+        file.write(str(decimal) + ',' + '\n')
+    file.write(']')
+    file.close()
 pass
