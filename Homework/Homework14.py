@@ -488,4 +488,5 @@ with open('decoder.h', 'w') as file:
         file.write(str(decimal) + ',' + '\n')
     file.write(']')
     file.close()
+
 pass
