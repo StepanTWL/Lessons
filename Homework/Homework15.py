@@ -33,28 +33,47 @@ for i in range(1, len(my_dict)):
 pass
 
 count = 0
+count_table = 0
+count_one = 0
 arr1 = []
 with open('decoder1.h', 'w') as file:
     file.write('direct = [ \n')
     for i in my_dict.values():
         if i != [0]:
+            count_table += 1
             arr1.append(i[0])
-            file.write(f'{i[0]}, \n')
+            if not count_table % 7:
+                file.write(f' {i[0].rjust(15)}, \n')
+            else:
+                file.write(f' {i[0].rjust(15)},')
             count += 1
-        if count == 256:
+        if count == 1256:
             last = binary_to_decimal(i[0][2:])
             break
     file.write('];\n')
     file.write('\n')
     file.write('back = [ \n')
-    arr2 = [0] * (last + 1)
-    for i in range(last + 1):
-        if arr1.count('0b'+bin(i).zfill(12)):
-            arr2[i] = arr1.index('0b'+bin(i).zfill(12))
+
+    """
+    for i in arr1:
+        if i.count('1') == 7:
+            print(binary_to_decimal(i[2:]))
+    """
+
+    arr2 = [-1] * 4096
+    for i in range(4096):
+        for j in range(1, len(my_dict)):
+            if my_dict[j] != [0]:
+                for k in range(len(my_dict[j])):
+                    if ('0b' + bin(i)[2:].zfill(12)) == my_dict[j][k]:
+                        arr2[i] = arr1.index('0b' + bin(j)[2:].zfill(12))
+    count_table = 0
     for decimal in arr2:
-        file.write(str(decimal) + ',' + '\n')
+        count_table += 1
+        if not count_table % 20:
+            file.write(f' {str(decimal).rjust(4)}, \n')
+        else:
+            file.write(f' {str(decimal).rjust(4)},')
     file.write('];')
     file.close()
-
-#000 -> 0b000000000001(001) -> 000
-#255 -> 0b001011001011(715) -> 255
+print(count_one)
