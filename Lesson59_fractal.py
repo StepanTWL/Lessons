@@ -243,7 +243,7 @@ for chr in axiom:
 
 
 screen.exitonclick()
-"""
+
 
 
 
@@ -267,21 +267,22 @@ screen.bgcolor('black')
 screen.delay(0)
 
 # turtle setting
-STEP, ANGLE = 7, 22.5
+STEP, ANGLE = 7, 20
 stack = []
 leo = turtle.Turtle()
 leo.pensize(3)
 leo.speed(0)
-leo.setpos(0, -HEIGHT//2)
+#leo.setpos(0, -HEIGHT//2) рисовать вверх
+leo.setpos(0, HEIGHT//2)
 leo.color('green')
 
 
 
 def apple_rules(s: str) -> str:
-    return ''.join([rule_1 if chr == chr_1 else chr for chr in s])
+    return ''.join([rule_1 if chr == chr_1 else rule_2 if chr == chr_2 else chr for chr in s])
 
 
-def get_result(gens, axiom):
+def get_result(gens: int, axiom: str) -> str:
     for gen in range(gens):
         axiom = apple_rules(axiom)
     return axiom
@@ -291,11 +292,12 @@ turtle.pencolor('white')
 turtle.goto(-WIDTH // 2 + 60, HEIGHT // 2 - 100)
 turtle.clear()
 turtle.write(f'generation: {gens}', font=('Arial', 60, 'normal'))
-#turtle.hideturtle()
+turtle.hideturtle()
 
 
 axiom = get_result(gens, axiom)
-leo.left(90)
+#leo.left(90) рисовать вверх
+leo.right(90)
 for chr in axiom:
     if chr == chr_1:
         leo.forward(STEP)
@@ -308,6 +310,82 @@ for chr in axiom:
         stack.append((angle_, pos_))
     elif chr == ']':
         angle_, pos_ = stack.pop()
+        leo.setheading(angle_)
+        leo.penup()
+        leo.goto(pos_)
+        leo.pendown()
+
+screen.exitonclick()
+"""
+
+# Ветка более сложная
+import turtle
+import random
+
+# L-system setting
+gens = 10
+axiom = 'XY'
+chr_1, rule_1 = 'X', 'F[@[-X]+X]'
+
+# screen setting
+WIDTH, HEIGHT = 1600, 900
+screen = turtle.Screen()
+screen.setup(WIDTH, HEIGHT)
+screen.screensize(3 * WIDTH, 3 * HEIGHT)  # размер поля в 9 раз больше окна
+screen.bgcolor('black')
+screen.delay(0)
+
+# turtle setting
+STEP, ANGLE = 80, lambda: random.randint(0, 45)
+stack = []
+color = [0.35, 0.2, 0.0]
+thickness = 20#толщина
+leo = turtle.Turtle()
+leo.pensize(3)
+leo.speed(0)
+leo.setpos(0, -HEIGHT//2)
+leo.color('green')
+
+
+def apple_rules(s: str) -> str:
+    return ''.join([rule_1 if chr == chr_1 else chr for chr in s])
+
+
+def get_result(gens: int, axiom: str) -> str:
+    for gen in range(gens):
+        axiom = apple_rules(axiom)
+    return axiom
+
+
+turtle.pencolor('white')
+turtle.goto(-WIDTH // 2 + 60, HEIGHT // 2 - 100)
+turtle.clear()
+turtle.write(f'generation: {gens}', font=('Arial', 60, 'normal'))
+turtle.hideturtle()
+
+axiom = get_result(gens, axiom)
+leo.left(90)
+leo.pensize(thickness)
+for chr in axiom:
+    leo.color(color)
+    if chr == 'F' or chr == 'X':
+        leo.forward(STEP)
+    elif chr == '@':
+        STEP -= 6
+        color[1] += 0.04
+        thickness -= 2
+        thickness = max(1, thickness)
+        leo.pensize(thickness)
+    elif chr == '+':
+        leo.right(ANGLE())
+    elif chr == '-':
+        leo.left(ANGLE())
+    elif chr == '[':
+        angle_, pos_ = leo.heading(), leo.pos()
+        stack.append((angle_, pos_, thickness, STEP, color[1]))
+    elif chr == ']':
+        angle_, pos_, thickness, STEP, color[1] = stack.pop()
+        leo.pensize(thickness)
         leo.setheading(angle_)
         leo.penup()
         leo.goto(pos_)
