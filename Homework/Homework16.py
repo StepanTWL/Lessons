@@ -106,9 +106,63 @@ if 7 in my_list:
 if 9 in my_list:
     my_list.remove(9)
 print(my_list)
+
+
+s = input()
+arr = list(map(str, s.split()))
+arr1 = list(map(str, s.lower().split()))
+index = [0]*len(arr)
+index[0] = 1
+for i in range(1, len(arr)):
+    if not arr[i].lower() in arr1[:i]:
+        index[i] = 1
+for i in range(len(arr)):
+    if index[i]:
+        print(arr[i], end=' ')
+
+
+my_frozen = frozenset([int('7' * i) for i in range(1, 78)])
+
+words = ['feel', 'graduate', 'movie', 'fashionable', 'bacon',
+         'drop', 'produce', 'acquisition', 'cheap', 'strength',
+         'master', 'perception', 'noise', 'strange', 'am']
+words_with_position = []
+for i in range(len(words)):
+    words_with_position.append((words[i], i+1))
+print(words_with_position)
+
+
+
+def count_AGTC(dna: str):
+    A = 0
+    G = 0
+    T = 0
+    C = 0
+    if 'A' in dna:
+        A = dna.count('A')
+    if 'G' in dna:
+        G = dna.count('G')
+    if 'T' in dna:
+        T = dna.count('T')
+    if 'C' in dna:
+        C = dna.count('C')
+    print((A, G, T, C))
+
+
+count_AGTC('AGGTC')
+
+from typing import Union
+
+
+def first_repeated_word(text: str) -> Union[str, None]:
+    'Находит первый дубль в строке'
+    arr = list(map(str, text.split()))
+    for i in range(1, len(arr)):
+        if arr[i] in arr[:i]:
+            return arr[i]
+    return None
+print(first_repeated_word("ab ca bc ca ab bc"))
 """
 
-s=list(map(str, input().split()))
-
-
 pass
+
