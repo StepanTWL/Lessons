@@ -162,7 +162,65 @@ def first_repeated_word(text: str) -> Union[str, None]:
             return arr[i]
     return None
 print(first_repeated_word("ab ca bc ca ab bc"))
+
+
+
+def check_sum(*args):
+    summa = 0
+    for i in args:
+        summa += i
+    if summa >= 50:
+        print('verification passed')
+    else:
+        print('not enough')
+
+
+check_sum(*list(map(int, input().split())))
+
+from typing import Union, List
+
+
+def create_actor(name: str = 'Райан', surname: str = 'Рейнольдс', age: int = 46, **kwargs):
+    dictt = {}
+    dictt['name'] = name
+    dictt['surname'] = surname
+    dictt['age'] = age
+    for key, value in kwargs.items():
+        dictt[key] = value
+    return dictt
+
+
+dictt1 = create_actor(name='Jack', age=20, x=(10, 20, 30), z=100)
+
+sale_lambda = lambda x: x*0.9 if x > 50.0 else x
 """
 
-pass
+def calculate(x: float, y: float, operation: str = 'a') -> None:
+    def addition(x: float, y: float):
+        print(float(x + y))
 
+    def subtraction(x: float, y: float):
+        print(float(x - y))
+
+    def division(x: float, y: float):
+        if not y:
+            print('На ноль делить нельзя!')
+        print(x / y)
+
+    def multiplication(x: float, y: float):
+        print(float(x * y))
+
+    if operation == 'a':
+        addition(x, y)
+    elif operation == 's':
+        subtraction(x, y)
+    elif operation == 'd':
+        division(x, y)
+    elif operation == 'm':
+        multiplication(x, y)
+    else:
+        print('Ошибка. Данной операции не существует')
+
+calculate(10, 4, 's')
+
+pass
