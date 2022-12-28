@@ -2,8 +2,6 @@ from random import shuffle
 import tkinter as tk
 from tkinter.messagebox import showerror, showinfo
 
-
-#colors = ['#FFFFFF', '#0000FF', '#008200', '#FFFFFF', '#FF0000', '#000084', '#840000', '#008284', '#840084', '#000000']
 colors = {
     1: 'blue',
     2: '#008200',
@@ -69,7 +67,6 @@ class MineSweeper:
         if MineSweeper.IS_FIRST_CLICK:
             self.insert_mines(clicked_button.number)
             self.count_mines_in_buttons()
-            self.print_buttons()
             MineSweeper.IS_FIRST_CLICK = False
 
         if clicked_button.is_mine:
@@ -150,8 +147,6 @@ class MineSweeper:
         MineSweeper.MINES = int(mines.get())
         self.reload()
 
-        
-    
     def create_widgets(self):
 
         menubar = tk.Menu(self.window)
@@ -180,16 +175,6 @@ class MineSweeper:
         self.create_widgets()
         MineSweeper.window.mainloop()
 
-    def print_buttons(self):
-        for i in range(1,MineSweeper.ROW+1):
-            for j in range(1,MineSweeper.COLUMN+1):
-                btn = self.buttons[i][j]
-                if btn.is_mine:
-                    print('B', end='')
-                else:
-                    print(btn.count_bomb, end='')
-            print()
-
     def insert_mines(self, number: int):
         index_mines = self.get_mines_places(number)
         for i in range(1,MineSweeper.ROW+1):
@@ -210,7 +195,6 @@ class MineSweeper:
                             if neighbour.is_mine:
                                 count_bomb += 1
                 btn.count_bomb = count_bomb
-
 
     @staticmethod
     def get_mines_places(exclude_number):
