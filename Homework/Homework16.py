@@ -193,7 +193,7 @@ def create_actor(name: str = 'Райан', surname: str = 'Рейнольдс', 
 dictt1 = create_actor(name='Jack', age=20, x=(10, 20, 30), z=100)
 
 sale_lambda = lambda x: x*0.9 if x > 50.0 else x
-"""
+
 
 def calculate(x: float, y: float, operation: str = 'a') -> None:
     def addition(x: float, y: float):
@@ -222,5 +222,42 @@ def calculate(x: float, y: float, operation: str = 'a') -> None:
         print('Ошибка. Данной операции не существует')
 
 calculate(10, 4, 's')
+
+
+arr = list(map(int, input().split()))
+
+dictt = {}
+
+if len(arr) == (0 or 1):
+    print(dictt)
+else:
+    dictt[arr[-2]] = arr[-1]
+    arr.pop(-1)
+    arr.pop(-1)
+    while len(arr):
+        dictt = {arr[-1]: dictt}
+        arr.pop(-1)
+print(dictt)
+
+
+
+def file_n_lines(file_name: str, n: int) -> None:
+    with open(file_name, 'r') as file:
+        for i in range(n):
+            print(file.readline(), end='')
+
+
+file_n_lines("hello.txt", 3)
+"""
+
+def find_lines_len_more_6(file_name:str) -> int:
+    count = 0
+    with open(file_name, 'r') as file:
+        for line in file:
+            if len(line) > 6 or (len(line) > 7 and line[-1] == '\n'):
+                count += 1
+    print(count)
+
+find_lines_len_more_6('hello.txt')
 
 pass
