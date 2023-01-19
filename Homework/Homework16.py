@@ -248,7 +248,7 @@ def file_n_lines(file_name: str, n: int) -> None:
 
 
 file_n_lines("hello.txt", 3)
-"""
+
 
 def find_lines_len_more_6(file_name:str) -> int:
     count = 0
@@ -256,8 +256,16 @@ def find_lines_len_more_6(file_name:str) -> int:
         for line in file:
             if len(line) > 6 or (len(line) > 7 and line[-1] == '\n'):
                 count += 1
-    print(count)
+    return count
 
-find_lines_len_more_6('hello.txt')
 
+print(find_lines_len_more_6('hello.txt'))
+"""
+sett = set()
+with open('lorem.txt', 'r') as file:
+    arr = file.read().lower().replace('\n', ' ').split()
+    for world in arr:
+        if not world in sett:
+            sett.add(world)
+print(len(sett))
 pass
